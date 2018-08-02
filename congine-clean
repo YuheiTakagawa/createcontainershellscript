@@ -1,0 +1,4 @@
+#!/bin/sh
+
+ip netns delete ns0
+rm -f tmpc/storage/*

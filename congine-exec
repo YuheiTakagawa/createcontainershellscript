@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ifconfig veth2 192.168.111.2/24 up
+unshare --mount \
+	--ipc \
+	--uts \
+	--user \
+	--map-root-user \
+	--pid \
+	--fork \
+	--mount-proc \
+	 ./congine-core "$@"
+
+

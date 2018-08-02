@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+netfunc () {
+	ip netns add ns0
+	ip link add name veth1 type veth peer name veth2
+	ip link set veth2 netns ns0
+	ifconfig veth1 192.168.111.1/24 up
+}
+
+netfunc
+ip netns exec ns0 ./congine-exec "$@"
+echo "Container Terminated"
+./congine-clean

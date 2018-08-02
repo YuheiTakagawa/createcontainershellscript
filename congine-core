@@ -1,0 +1,15 @@
+#!/bin/sh
+
+mountfunc () {
+	mkdir -p tmpc tmpc/root tmpc/storage tmpc/work
+	mount -t overlay -o upperdir="tmpc/storage",lowerdir="/",workdir="tmpc/work" overlayfs "tmpc/root"
+	mount -t proc proc tmpc/root/proc
+}
+
+utsfunc () {
+	hostname container
+}
+
+mountfunc
+utsfunc
+exec chroot tmpc/root sh -c "exec $*"
