@@ -1,7 +1,8 @@
 # createcontainershellscript
+require root permission
 ## usage
 ```
-./congine <PATH>
+sudo ./congine <PATH>
 ```
 Only use namespace. veth, overlayfs. (2018/08/02)
 
